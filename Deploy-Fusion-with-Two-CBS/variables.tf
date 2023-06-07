@@ -1,0 +1,94 @@
+variable "resource_group_name" {
+  type        = string
+  description = "RG name in Azure"
+}
+
+variable "resource_group_location" {
+  type        = string
+  description = "RG location in Azure"
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "Tags used for the deployment"
+  default = {
+    "Environment" = "Lab"
+    "Owner"       = "CBS"
+  }
+}
+
+variable "vnet_address_space" {
+  type        = list(any)
+  description = "the address space of the VNet"
+  default     = ["10.10.0.0/16"]
+}
+
+variable "subnets" {
+  type = map(any)
+}
+
+## CBS Array Zone 1 
+variable "array_name_1" {
+  type = string
+}
+variable "zone_1" {
+  type = number
+}
+
+## CBS Array Zone 1
+variable "array_name_2" {
+  type = string
+}
+variable "zone_2" {
+  type = number
+}
+
+variable "log_sender_domain" {
+  type = string
+}
+
+variable "alert_recipients" {
+  type = list(string)
+}
+
+variable "jit_group_ids" {
+  type = list(string)
+}
+variable "array_model" {
+  type = string
+}
+
+variable "license_key" {
+  type = string
+}
+
+variable "key_file_path" {
+  type = string
+}
+
+
+variable "cbs_subnet_vms_address" {
+  type        = list(any)
+  description = "the address space of the initior VMs subnet"
+  default     = ["10.10.0.0/24"]
+}
+
+variable "azure_vm_size" {
+  type = string
+}
+variable "azure_vm_username" {
+  type = string
+}
+variable "azure_vm_password" {
+  type = string
+}
+
+variable "azure_virtualnetwork_peer_name" {
+  type = string
+}
+
+variable "azure_virtualnetwork_peer_rg" {
+  type = string
+}
+
+
