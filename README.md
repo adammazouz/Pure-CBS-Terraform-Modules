@@ -26,7 +26,7 @@ The content of this repo is mostly Azure and CBS Terraform Provider Code. It is 
    | Deploy-CBS-Prerequisites-Only | Azure          | CBS-VNET,CBS-NAT-GW, VM-JUMPBOX           |
    | Deploy-CBS-Greenfield         | Azure          | CBS-Array,CBS-VNET,CBS-NAT-GW, VM-JUMPBOX |
    | Deploy-Fusion-SEC             | Azure          | CBS-VNET, Fusion-SEC                                      |
-   | [Deploy-Fusion-SEC-with-Two-CBS ](Pure-CBS-Terraform-Modules/Deploy-Fusion-with-Two-CBS)        | Azure          | CBS-Array,Fusion-SEC, CBS-VNET,CBS-NAT-GW, VM-JUMPBOX |
+   | [Deploy-Fusion-SEC-with-Two-CBS ](/Deploy-Fusion-with-Two-CBS)        | Azure          | CBS-Array,Fusion-SEC, CBS-VNET,CBS-NAT-GW, VM-JUMPBOX |
 
 2. Modules files:
    | Module Name | |
