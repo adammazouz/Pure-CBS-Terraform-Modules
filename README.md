@@ -1,6 +1,6 @@
 # Pure-CBS-Terraform-Modules
 
-Terraform examples for deploying Pure Cloud Block Store and Fusion with all the associated pre-requisites
+Terraform examples for deploying Pure Cloud Block Store and Fusion SEC with all the associated pre-requisites.
 
 _Note: This repo only supports deploying Cloud Block Store in Azure_
 
@@ -24,7 +24,7 @@ The content of this repo is mostly Azure and CBS Terraform Provider Code. It is 
    | Example Name                  | Cloud Provider | Modules Used                    |
    | ----------------------------- | -------------- | ------------------------------- |
    | Deploy-CBS-Prerequisites-Only | Azure          | CBS-VNET,CBS-NAT-GW, VM-JUMPBOX |
-   | Deploy-CBS-Greenfield                            | Azure             | C2                              |
+   | Deploy-CBS-Greenfield                            | Azure             | CBS-Array, CBS-VNET,CBS-NAT-GW, VM-JUMPBOX                             |
    | A3                            | B3             | C3                              |
 
 2. Modules files:
