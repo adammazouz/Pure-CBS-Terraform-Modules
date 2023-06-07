@@ -72,20 +72,14 @@ module "CBS-Key-Vault" {
   resource_group_location = var.resource_group_location
 }
 
-// setup network peering for access from tf vnet to cbs vnet
-# data "azurerm_virtual_network" "tf_vnet" {
-#   name                = var.azure_virtualnetwork_peer_name
-#   resource_group_name = var.azure_virtualnetwork_peer_rg
-# }
-
-resource "azurerm_virtual_network_peering" "tf_cbs" {
-  name                = "To-CBS-VNET"
-  resource_group_name = var.azure_virtualnetwork_peer_rg
-  # virtual_network_name      = data.azurerm_virtual_network.tf_vnet.name
-  virtual_network_name      = var.azure_virtualnetwork_peer_name
-  remote_virtual_network_id = module.CBS_vNET.cbs_vnet_id
+module "CBS-VNET-Peering" {
+  source = "../Modules/CBS-VNet-Peering"
+  resource_group_name     = azurerm_resource_group.azure_rg.name
+  cbs_vnet_id = module.CBS_vNET.cbs_vnet_id
+  cbs_vnet_name = module.CBS_vNET.cbs_vnet_name
+  azure_virtualnetwork_peer_name = var.azure_virtualnetwork_peer_name
+  azure_virtualnetwork_peer_rg = var.azure_virtualnetwork_peer_rg
 }
-
 
 module "CBS-Array" {
   source                  = "../Modules/CBS-Array"
