@@ -23,18 +23,19 @@ The content of this repo is mostly Azure and CBS Terraform Provider Code. It is 
 
    | Example Name                  | Cloud Provider | Modules Used                              |
    | ----------------------------- | -------------- | ----------------------------------------- |
-   | Deploy-CBS-Prerequisites-Only | Azure          | CBS-VNET,CBS-NAT-GW, VM-JUMPBOX           |
-   | Deploy-CBS-Greenfield         | Azure          | CBS-Array,CBS-VNET,CBS-NAT-GW, VM-JUMPBOX |
-   | Deploy-Fusion-SEC             | Azure          | CBS-VNET, Fusion-SEC                                      |
+   | [Deploy-CBS-Prerequisites-Only](/Deploy-CBS-Prerequisites-Only) | Azure          | CBS-VNET,CBS-NAT-GW, VM-JUMPBOX           |
+   | [Deploy-CBS-Greenfield](/Deploy-CBS-Greenfield)         | Azure          | CBS-Array,CBS-VNET,CBS-NAT-GW, VM-JUMPBOX |
+   | [Deploy-Fusion-SEC](/Deploy-Fusion-SEC)             | Azure          | CBS-VNET, Fusion-SEC                                      |
    | [Deploy-Fusion-SEC-with-Two-CBS ](/Deploy-Fusion-with-Two-CBS)        | Azure          | CBS-Array,Fusion-SEC, CBS-VNET,CBS-NAT-GW, VM-JUMPBOX |
 
 2. Modules files:
    | Module Name | |
    | ----------- | --- |
-   | CBS-VNET | Creates an Azure VNet with four Subnet |
-   | CBS-NAT-GW | Creates an Azure NAT GW and associate it with CBS System Subnet |
-   | CBS-Key-Vault | Creates an Azure KeyValut that is used by CBS Terraform Provider to perform management operations |
-   | VM-JUMPBOX | Creates an Azure VM on the same CBS VNet, it can be used as a Jump Host or repurpose as an initiator|
-   | CBS-Array | Creates a Cloud Block Store Array |
-   | Fusion-SEC | Create a Fusion Storage Endpoint Collection |
-   | Fusion-CBS-Array | Creates a Cloud Block Store Array that can be associated to a Fusion SEC |
+   | [CBS-VNET](/Modules/CBS-VNet) | Creates an Azure VNet with four Subnet |
+   | [CBS-NAT-GW](/Modules/CBS-NAT-GW) | Creates an Azure NAT GW and associate it with CBS System Subnet |
+   | [CBS-Key-Vault](/Modules/CBS-Key-Vault) | Creates an Azure KeyValut that is used by CBS Terraform Provider to perform management operations |
+   | [CBS-Identity](/Modules/CBS-Identity) | Creates an Azure Custom Role and Assign it to a User Managed Identity |
+   | [VM-JUMPBOX](/Modules/VM-JUMPBOX) | Creates an Azure VM on the same CBS VNet, it can be used as a Jump Host or repurpose as an initiator|
+   | [CBS-Array](/Modules/CBS-Array) | Creates a Cloud Block Store Array |
+   | [Fusion-SEC](/Modules/Fusion-SEC) | Create a Fusion Storage Endpoint Collection |
+   | [Fusion-CBS-Array](/Modules/Fusion-CBS-Array) | Creates a Cloud Block Store Array that can be associated to a Fusion SEC |

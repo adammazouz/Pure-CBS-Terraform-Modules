@@ -73,7 +73,7 @@ module "CBS-Key-Vault" {
 }
 
 module "CBS-Identity" {
-  source                  = "../Modules/CBS-Idenity"
+  source                  = "../Modules/CBS-Identity"
   resource_group_name     = azurerm_resource_group.azure_rg.name
   resource_group_location = var.resource_group_location
   cbs_vnet_id             = module.CBS_vNET.cbs_vnet_id
