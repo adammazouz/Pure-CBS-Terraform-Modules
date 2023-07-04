@@ -49,9 +49,8 @@ log_sender_domain = "xxxxxxx.com"
 #Email for Alerts
 alert_recipients = ["xxxxxxxx@xxxxxxxx.com"]
 #Azure Zone                  
-zone_1 = 1
-zone_2 = 2
-#Array Model                                              
+zone = 1
+#Array Model ## Choose from (V10MUR1, V20MUR1, V20MP2R2)                                           
 array_model = "V10MUR1"
 
 azure_virtualnetwork_peer_name = "xxxxxx"
