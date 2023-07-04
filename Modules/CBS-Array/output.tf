@@ -1,5 +1,5 @@
 output "cbs_azure_deployed_plans" {
-  value = data.cbs_azure_plans.azure_plans.plans
+  value = data.cbs_azure_plans.azure_plans.plans[0]
 }
 
 output "cbs_mgmt_endpoint" {

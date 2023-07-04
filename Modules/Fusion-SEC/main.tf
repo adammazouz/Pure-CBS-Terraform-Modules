@@ -2,7 +2,7 @@ terraform {
   required_providers {
     cbs = {
       source  = "PureStorage-OpenConnect/cbs"
-      version = "~> 0.8.0"
+      version = "~> 0.9.0"
     }
   }
   required_version = ">= 0.13"
@@ -18,6 +18,7 @@ resource "cbs_fusion_sec_azure" "fusion_sec_azure_instance" {
     load_balancer_subnet = var.load_balancer_subnet
 
     jit_approval_group_object_ids = var.jit_group_ids
+    user_assigned_identity  = var.user_assigned_identity
 
     plan {
         name = "pure_sec_1_0_0"

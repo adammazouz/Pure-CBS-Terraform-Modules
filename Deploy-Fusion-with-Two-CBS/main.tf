@@ -2,7 +2,7 @@ terraform {
   required_providers {
     cbs = {
       source  = "PureStorage-OpenConnect/cbs"
-      version = "~> 0.8.0"
+      version = "~> 0.9.0"
     }
     azurerm = {
       source = "hashicorp/azurerm"
@@ -70,16 +70,23 @@ module "CBS-Key-Vault" {
   source                  = "../Modules/CBS-Key-Vault"
   resource_group_name     = azurerm_resource_group.azure_rg.name
   resource_group_location = var.resource_group_location
-  tags                       = var.tags
+  tags                    = var.tags
+}
+
+module "CBS-Identity" {
+  source                  = "../Modules/CBS-Idenity"
+  resource_group_name     = azurerm_resource_group.azure_rg.name
+  resource_group_location = var.resource_group_location
+  cbs_vnet_id             = module.CBS_vNET.cbs_vnet_id
 }
 
 module "CBS-VNET-Peering" {
-  source = "../Modules/CBS-VNet-Peering"
-  resource_group_name     = azurerm_resource_group.azure_rg.name
-  cbs_vnet_id = module.CBS_vNET.cbs_vnet_id
-  cbs_vnet_name = module.CBS_vNET.cbs_vnet_name
+  source                         = "../Modules/CBS-VNet-Peering"
+  resource_group_name            = azurerm_resource_group.azure_rg.name
+  cbs_vnet_id                    = module.CBS_vNET.cbs_vnet_id
+  cbs_vnet_name                  = module.CBS_vNET.cbs_vnet_name
   azure_virtualnetwork_peer_name = var.azure_virtualnetwork_peer_name
-  azure_virtualnetwork_peer_rg = var.azure_virtualnetwork_peer_rg
+  azure_virtualnetwork_peer_rg   = var.azure_virtualnetwork_peer_rg
 }
 
 module "Fusion_SEC" {
@@ -97,47 +104,50 @@ module "Fusion_SEC" {
 
 
 module "CBS-Array-Zone-1" {
-  source                  = "../Modules/Fusion-CBS-Array"
-  array_name              = var.array_name_1
-  resource_group_name     = azurerm_resource_group.azure_rg.name
-  resource_group_location = var.resource_group_location
-  cbs_vnet_id             = module.CBS_vNET.cbs_vnet_id
-  cbs_subnet_mgmt_name    = module.CBS_vNET.azure_subnet_name.cbs_subnet_mgmt
-  cbs_subnet_iscsi_name   = module.CBS_vNET.azure_subnet_name.cbs_subnet_iscsi
-  cbs_subnet_repl_name    = module.CBS_vNET.azure_subnet_name.cbs_subnet_repl
-  cbs_subnet_sys_name     = module.CBS_vNET.azure_subnet_name.cbs_subnet_sys
-  license_key             = var.license_key
-  cbs_key_vault           = module.CBS-Key-Vault.cbs_key_vault_id
-  log_sender_domain       = var.log_sender_domain
-  alert_recipients        = var.alert_recipients
-  array_model             = var.array_model
-  zone                    = var.zone_1
-  key_file_path           = var.key_file_path
-  jit_group_ids           = var.jit_group_ids
+  source                                    = "../Modules/Fusion-CBS-Array"
+  array_name                                = var.array_name_1
+  resource_group_name                       = azurerm_resource_group.azure_rg.name
+  resource_group_location                   = var.resource_group_location
+  cbs_vnet_id                               = module.CBS_vNET.cbs_vnet_id
+  cbs_subnet_mgmt_name                      = module.CBS_vNET.azure_subnet_name.cbs_subnet_mgmt
+  cbs_subnet_iscsi_name                     = module.CBS_vNET.azure_subnet_name.cbs_subnet_iscsi
+  cbs_subnet_repl_name                      = module.CBS_vNET.azure_subnet_name.cbs_subnet_repl
+  cbs_subnet_sys_name                       = module.CBS_vNET.azure_subnet_name.cbs_subnet_sys
+  license_key                               = var.license_key
+  cbs_key_vault                             = module.CBS-Key-Vault.cbs_key_vault_id
+  log_sender_domain                         = var.log_sender_domain
+  alert_recipients                          = var.alert_recipients
+  array_model                               = var.array_model
+  zone                                      = var.zone_1
+  key_file_path                             = var.key_file_path
+  jit_group_ids                             = var.jit_group_ids
   fusion_sec_load_balancer_full_identity_id = module.Fusion_SEC.fusion_sec_load_balancer_full_identity_id
-  tags                    = var.tags
+  tags                                      = var.tags
+  user_assigned_identity                    = module.CBS-Identity.user_assigned_identity_id
+
 }
 
 module "CBS-Array-Zone-2" {
-  source                  = "../Modules/Fusion-CBS-Array"
-  array_name              = var.array_name_2
-  resource_group_name     = azurerm_resource_group.azure_rg.name
-  resource_group_location = var.resource_group_location
-  cbs_vnet_id             = module.CBS_vNET.cbs_vnet_id
-  cbs_subnet_mgmt_name    = module.CBS_vNET.azure_subnet_name.cbs_subnet_mgmt
-  cbs_subnet_iscsi_name   = module.CBS_vNET.azure_subnet_name.cbs_subnet_iscsi
-  cbs_subnet_repl_name    = module.CBS_vNET.azure_subnet_name.cbs_subnet_repl
-  cbs_subnet_sys_name     = module.CBS_vNET.azure_subnet_name.cbs_subnet_sys
-  license_key             = var.license_key
-  cbs_key_vault           = module.CBS-Key-Vault.cbs_key_vault_id
-  log_sender_domain       = var.log_sender_domain
-  alert_recipients        = var.alert_recipients
-  array_model             = var.array_model
-  zone                    = var.zone_2
-  key_file_path           = var.key_file_path
-  jit_group_ids           = var.jit_group_ids
+  source                                    = "../Modules/Fusion-CBS-Array"
+  array_name                                = var.array_name_2
+  resource_group_name                       = azurerm_resource_group.azure_rg.name
+  resource_group_location                   = var.resource_group_location
+  cbs_vnet_id                               = module.CBS_vNET.cbs_vnet_id
+  cbs_subnet_mgmt_name                      = module.CBS_vNET.azure_subnet_name.cbs_subnet_mgmt
+  cbs_subnet_iscsi_name                     = module.CBS_vNET.azure_subnet_name.cbs_subnet_iscsi
+  cbs_subnet_repl_name                      = module.CBS_vNET.azure_subnet_name.cbs_subnet_repl
+  cbs_subnet_sys_name                       = module.CBS_vNET.azure_subnet_name.cbs_subnet_sys
+  license_key                               = var.license_key
+  cbs_key_vault                             = module.CBS-Key-Vault.cbs_key_vault_id
+  log_sender_domain                         = var.log_sender_domain
+  alert_recipients                          = var.alert_recipients
+  array_model                               = var.array_model
+  zone                                      = var.zone_2
+  key_file_path                             = var.key_file_path
+  jit_group_ids                             = var.jit_group_ids
   fusion_sec_load_balancer_full_identity_id = module.Fusion_SEC.fusion_sec_load_balancer_full_identity_id
-  tags                    = var.tags
+  tags                                      = var.tags
+  user_assigned_identity                    = module.CBS-Identity.user_assigned_identity_id
 }
 
 

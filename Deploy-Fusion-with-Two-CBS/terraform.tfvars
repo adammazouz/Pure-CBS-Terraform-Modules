@@ -1,7 +1,7 @@
 
 #Azure Variables
 resource_group_name     = "cbs-fusion-poc-" #Prefix for Jump Start Deployment Resources
-resource_group_location = "eastus"              #Region see entries below
+resource_group_location = "eastus"          #Region see entries below
 # azure_client_id                       = "xxxxxxxx-xxxx-xxx-xxxx-xxxxxxxxxxxxxx"
 # azure_client_secret                   = "xxxxxxxx-xxxx-xxx-xxxx-xxxxxxxxxxxxxx"
 # azure_subscription_id                 = "xxxxxxxx-xxxx-xxx-xxxx-xxxxxxxxxxxxxx"

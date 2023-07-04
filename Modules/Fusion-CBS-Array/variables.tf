@@ -71,3 +71,7 @@ variable "key_file_path" {
 variable "fusion_sec_load_balancer_full_identity_id" {
   type = string
 }
+
+variable "user_assigned_identity" {
+  type = string
+}

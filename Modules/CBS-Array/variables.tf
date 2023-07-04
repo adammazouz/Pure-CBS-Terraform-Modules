@@ -67,3 +67,7 @@ variable "license_key" {
 variable "key_file_path" {
   type = string
 }
+
+variable "user_assigned_identity" {
+  type = string
+}

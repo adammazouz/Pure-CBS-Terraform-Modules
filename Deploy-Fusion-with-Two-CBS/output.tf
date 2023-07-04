@@ -2,8 +2,8 @@ output "VM_Jumpbox_Private_IP" {
   value = module.VM-JUMPBOX.VM_Jumpbox_Private_IP
 }
 
-output "VM_Jumpbox_Public_IP" { 
-    value = module.VM-JUMPBOX.VM_Jumpbox_Public_IP
+output "VM_Jumpbox_Public_IP" {
+  value = module.VM-JUMPBOX.VM_Jumpbox_Public_IP
 }
 
 output "fusion_sec_hmvip0" {

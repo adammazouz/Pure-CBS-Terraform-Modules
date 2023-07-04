@@ -2,7 +2,7 @@ terraform {
   required_providers {
     cbs = {
       source  = "PureStorage-OpenConnect/cbs"
-      version = "~> 0.8.0"
+      version = "~> 0.9.0"
     }
     azurerm = {
       source = "hashicorp/azurerm"
@@ -72,13 +72,20 @@ module "CBS-Key-Vault" {
   resource_group_location = var.resource_group_location
 }
 
-module "CBS-VNET-Peering" {
-  source = "../Modules/CBS-VNet-Peering"
+module "CBS-Identity" {
+  source                  = "../Modules/CBS-Idenity"
   resource_group_name     = azurerm_resource_group.azure_rg.name
-  cbs_vnet_id = module.CBS_vNET.cbs_vnet_id
-  cbs_vnet_name = module.CBS_vNET.cbs_vnet_name
+  resource_group_location = var.resource_group_location
+  cbs_vnet_id             = module.CBS_vNET.cbs_vnet_id
+}
+
+module "CBS-VNET-Peering" {
+  source                         = "../Modules/CBS-VNet-Peering"
+  resource_group_name            = azurerm_resource_group.azure_rg.name
+  cbs_vnet_id                    = module.CBS_vNET.cbs_vnet_id
+  cbs_vnet_name                  = module.CBS_vNET.cbs_vnet_name
   azure_virtualnetwork_peer_name = var.azure_virtualnetwork_peer_name
-  azure_virtualnetwork_peer_rg = var.azure_virtualnetwork_peer_rg
+  azure_virtualnetwork_peer_rg   = var.azure_virtualnetwork_peer_rg
 }
 
 module "CBS-Array" {
@@ -100,6 +107,8 @@ module "CBS-Array" {
   key_file_path           = var.key_file_path
   jit_group_ids           = var.jit_group_ids
   tags                    = var.tags
+  user_assigned_identity  = module.CBS-Identity.user_assigned_identity_id
+
 }
 
 
