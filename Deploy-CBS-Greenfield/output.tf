@@ -1,5 +1,5 @@
 output "cbs_azure_deployed_plan" {
-  value = module.CBS-Array.cbs_azure_deployed_plans[0]
+  value = module.CBS-Array.cbs_azure_deployed_plans
 }
 
 output "cbs_mgmt_endpoint" {
