@@ -15,6 +15,10 @@ terraform {
   required_version = ">= 0.13"
 }
 
+ /*    If Authintication via Service Principles would be used: 
+    1. Uncomment the required params from main.tf and variables.tf 
+    2. Add your service principle in terraform.tfvars              */
+
 provider "azurerm" {
   features {}
   # client_id       = var.azure_client_id
@@ -25,7 +29,7 @@ provider "azurerm" {
 
 provider "cbs" {
   azure {
-    #     client_id       = var.azure_client_id
+    # client_id       = var.azure_client_id
     # client_secret   = var.azure_client_secret
     # tenant_id       = var.azure_tenant_id
     # subscription_id = var.azure_subscription_id

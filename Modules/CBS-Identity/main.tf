@@ -8,18 +8,18 @@ resource "azurerm_user_assigned_identity" "user_identity" {
   tags                = var.tags
 }
 
+data "azurerm_resource_group" "rg_id" {
+  name = var.resource_group_name
+}
+
 resource "azurerm_role_definition" "cbs_role" {
   name  = format("%s%s", var.resource_group_name, "cbs-custom-role-definition")
-  scope = data.azurerm_subscription.primary.id
+  scope = data.azurerm_resource_group.rg_id.id
 
   permissions {
     actions     = ["Microsoft.Network/virtualNetworks/subnets/joinViaServiceEndpoint/action"]
     not_actions = []
   }
-
-  assignable_scopes = [
-    data.azurerm_subscription.primary.id,
-  ]
 }
 
 resource "azurerm_role_assignment" "role_assignment" {
