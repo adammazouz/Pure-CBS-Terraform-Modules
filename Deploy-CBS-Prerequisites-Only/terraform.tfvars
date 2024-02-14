@@ -19,28 +19,31 @@ plan_product = "pure_storage_cloud_block_store_deployment" #Specify CBS Version
 plan_publisher = "purestoragemarketplaceadmin" #specify CBS publisher
 plan_version = "1.0.1" #specify CBS Version
 
-vnet_address_space = ["10.10.0.0/16"]
+vnet_address_space = ["192.168.176.0/20"]
 
 subnets = {
   cbs_subnet_mgmt = {
     name             = "cbs_subnet_mgmt"
-    address_prefixes = ["10.10.1.0/24"]
+    address_prefixes = ["192.168.177.0/24"]
   }
   cbs_subnet_iscsi = {
     name             = "cbs_subnet_iscsi"
-    address_prefixes = ["10.10.2.0/24"]
+    address_prefixes = ["192.168.178.0/24"]
   }
   cbs_subnet_repl = {
     name             = "cbs_subnet_repl"
-    address_prefixes = ["10.10.3.0/24"]
+    address_prefixes = ["192.168.179.0/24"]
   }
   cbs_subnet_sys = {
     name             = "cbs_subnet_sys"
-    address_prefixes = ["10.10.4.0/24"]
+    address_prefixes = ["192.168.180.0/24"]
   }
 }
 
-cbs_subnet_vms = ["10.10.5.0/24"]
+cbs_subnet_vms = ["192.168.181.0/24"]
+
+#CBS Array Name
+array_name = "CBS-Greenfield-GSE-PS-lab"
 
 tags = {
   "Environment" = "Lab"
