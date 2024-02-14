@@ -36,6 +36,12 @@ provider "cbs" {
   }
 }
 
+resource "azurerm_marketplace_agreement" "plan" {
+    publisher = "purestoragemarketplaceadmin"
+    offer = "pure_storage_cloud_block_store_deployment"
+    plan = var.plan_name
+}
+
 resource "azurerm_resource_group" "azure_rg" {
   name     = format("%s%s", var.resource_group_name, var.resource_group_location)
   location = var.resource_group_location
