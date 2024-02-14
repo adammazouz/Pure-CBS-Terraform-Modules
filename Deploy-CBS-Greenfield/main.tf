@@ -122,9 +122,3 @@ module "CBS-Array" {
   depends_on = [ module.CBS-Identity ]
 
 }
-
-resource "azurerm_marketplace_agreement" "plan" {
-    publisher = "purestoragemarketplaceadmin"
-    offer = "pure_storage_cloud_block_store_deployment"
-    plan = var.plan_name
-}
