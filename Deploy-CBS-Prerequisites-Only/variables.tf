@@ -51,7 +51,9 @@ variable "cbs_subnet_vms_address" {
   default     = ["10.10.0.0/24"]
 }
 
-
+variable "plan_name" {
+    type = string
+}
 variable "azure_vm_size" {
   type = string
 }
