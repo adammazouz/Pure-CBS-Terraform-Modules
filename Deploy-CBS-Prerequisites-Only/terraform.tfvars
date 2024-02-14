@@ -45,6 +45,25 @@ cbs_subnet_vms = ["192.168.181.0/24"]
 #CBS Array Name
 array_name = "CBS-Greenfield-GSE-PS-lab"
 
+#CBS License key from Pure1
+license_key = "CBS-TRIAL-LICENSE"
+#DNS Domain for Array
+log_sender_domain = "purestorage.com"
+#Email for Alerts
+alert_recipients = ["dcave@purestorage.com"]
+#Azure Zone
+zone = 1
+#Array Model ## Choose from (V10MUR1, V20MUR1, V20MP2R2)
+array_model = "V10MUR1"
+
+azure_virtualnetwork_peer_name = "GSE_PS_CBS_TF_NET"
+azure_virtualnetwork_peer_rg   = "GSE_PS_CBS_TF_NET_RG"
+
+#Azure AD Group for JIT Approval
+jit_group_ids = ["eef91524-9f5e-4063-a10f-227270959da7"]
+#Private key file path for pureuser
+key_file_path = "/home/azureuser/.ssh/gse-ps-cbs-docs-test-array_rsa"
+
 tags = {
   "Environment" = "Lab"
   "Owner"       = "CBS"
