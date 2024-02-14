@@ -61,3 +61,6 @@ variable "azure_vm_username" {
 variable "azure_vm_password" {
   type = string
 }
+variable "key_file_path" {
+  type = string
+}
