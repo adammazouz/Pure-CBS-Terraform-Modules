@@ -18,7 +18,7 @@ plan_name = "cbs_azure_6_6_3" #specify CBS Version 6.1.11 and 6.2.1 are the late
 plan_product = "pure_storage_cloud_block_store_deployment" #Specify CBS Version
 plan_publisher = "purestoragemarketplaceadmin" #specify CBS publisher
 plan_version = "1.0.1" #specify CBS Version
-
+#comment
 vnet_address_space = ["192.168.176.0/20"]
 
 subnets = {
